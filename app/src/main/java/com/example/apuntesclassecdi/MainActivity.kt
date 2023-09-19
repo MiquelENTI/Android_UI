@@ -2,15 +2,20 @@ package com.example.apuntesclassecdi
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.apuntesclassecdi.ui.theme.ApuntesClasseCDITheme
 
 class MainActivity : ComponentActivity() {
@@ -19,8 +24,24 @@ class MainActivity : ComponentActivity() {
         setContent {
             ApuntesClasseCDITheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    PrintToScreen("aaa", "sd")
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background) {
+                    Column() {
+                        for (i in 1 .. 5)
+                        {
+                            PrintToScreen("aaa")
+                        }
+                        PrintToScreen("sss")
+                        PrintToScreen("ddd")
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    val names = listOf("11", "22", "33")
+
+                    for (name in names)
+                    {
+                        PrintToScreen(name)
+                    }
                 }
             }
         }
@@ -28,40 +49,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun PrintToScreen(name: String?, name2: String?, modifier: Modifier = Modifier) {
-
-//    val name = name ?: "Pepe"; // Assignacion por defecto
-
-    val name = name ?: run {
-        Log.e("Null Error", "Name is null")
-        return
-    }
-
-    val name2 = name2 ?: run {
-        Log.e("Null Error", "Name2 is null")
-        return
-    }
-
+fun PrintToScreen(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello ${name}!, ${name2}!",
+        text = "Hello ${name}!",
         modifier = modifier
     )
-
-    /*name?.let { name ->
-        name2?.let { name2 ->
-            Text(
-                text = "Hello ${name}!, ${name2}!",
-                modifier = modifier
-            )
-        } ?: run {
-            Log.e("Null Error", "Name2 is null")
-        }
-    } ?: run {
-        Log.e("Null Error", "Name is null")
-        /*Text(
-            text = "Hello is null",
-            modifier = modifier
-        )*/
-    }*/
-
 }
