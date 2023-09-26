@@ -2,7 +2,9 @@ package com.example.apuntesclassecdi
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Space
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -20,58 +22,18 @@ import androidx.compose.ui.unit.dp
 import com.example.apuntesclassecdi.ui.theme.ApuntesClasseCDITheme
 
 class MainActivity : ComponentActivity() {
-    open class Fruit(val name: String = "Fruta Generica")
-    {
-        
-    }
-    
-    class Apple(): Fruit("Manzana")
-    {
-        fun AppleFunc(){
-            
-        }
-    }
-    class Banana(): Fruit("Banana"){
-        fun BananaFunc(){
-            
-        }
-        
-    }
+
+    val startText: TextView by lazy { findViewById(R.id.start_screen_text) }
+    val startButton: Button by lazy { findViewById(R.id.start_screen_button) }
+
+    var counter = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ApuntesClasseCDITheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background) {
-                    
-                    Column() {
-                        val Fruits = listOf(Banana(), Apple())
-                        
-                        Fruits.forEach { fruit ->
-                            
-                            when(fruit){
-                                is Banana -> {
-                                    fruit.BananaFunc()
-                                }
-                                
-                                is Apple -> {
-                                    fruit.AppleFunc()
-                                }
-                                else -> PrintToScreen("Fruta no reconocible")
-                            }
-                        }
-                    }
-                }
-            }
+        setContentView(R.layout.start_screen)
+
+        startButton.setOnClickListener {
+            counter++
+            startText.text = counter.toString()
         }
     }
-}
-
-@Composable
-fun PrintToScreen(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello ${name}!",
-        modifier = modifier
-    )
 }
