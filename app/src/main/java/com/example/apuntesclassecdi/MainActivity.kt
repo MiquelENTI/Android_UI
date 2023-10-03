@@ -22,18 +22,10 @@ import androidx.compose.ui.unit.dp
 import com.example.apuntesclassecdi.ui.theme.ApuntesClasseCDITheme
 
 class MainActivity : ComponentActivity() {
-
-    val startText: TextView by lazy { findViewById(R.id.start_screen_text) }
-    val startButton: Button by lazy { findViewById(R.id.start_screen_button) }
-
-    var counter = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_screen)
 
-        startButton.setOnClickListener {
-            counter++
-            startText.text = counter.toString()
-        }
+        val color:Color = resources.getColor("")
     }
 }
